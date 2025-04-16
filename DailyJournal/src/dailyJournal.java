@@ -1,3 +1,5 @@
+import com.sun.speech.freetts.VoiceManager;
+import com.sun.speech.freetts.Voice;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.BufferedReader;
@@ -19,6 +21,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class dailyJournal extends javax.swing.JFrame {
 
+    volatile boolean isReading = false;
     String fontface = "Georgia";
     int fonttype = 0;
     int fontsize = 12;
@@ -27,6 +30,7 @@ public class dailyJournal extends javax.swing.JFrame {
      */
     public dailyJournal() {
         initComponents();
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
     }
 
     /**
@@ -65,6 +69,7 @@ public class dailyJournal extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         jFrame1.setSize(new java.awt.Dimension(500, 400));
 
@@ -267,6 +272,16 @@ public class dailyJournal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Read Aloud");
+
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        jMenuItem9.setText("Read");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem9);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -400,6 +415,43 @@ public class dailyJournal extends javax.swing.JFrame {
         jFrame1.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        read();
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    public void read() {
+        if (isReading) {
+            JOptionPane.showMessageDialog(rootPane, "it is reading");
+            return;
+        }
+        new Thread() {
+            @Override
+            public void run() {
+                try {
+                    isReading= true;
+                    VoiceManager voiceManager= VoiceManager.getInstance();
+                    Voice voice = voiceManager.getVoice("kevin16");
+                    if (voice == null) {
+                        System.out.println("No such voice: kevin16");
+                        return;
+                    }
+                    voice.setRate(140);
+                    voice.allocate();
+                    String textToSpeak= jTextArea1.getText();
+                    if (textToSpeak== null) {
+                        voice.speak("There is no text to read");
+                    } else {
+                        voice.speak(textToSpeak);
+                    }
+                    voice.deallocate();
+                } finally {
+                    isReading= false;
+                }
+            }
+        }.start();
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -459,6 +511,7 @@ public class dailyJournal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
