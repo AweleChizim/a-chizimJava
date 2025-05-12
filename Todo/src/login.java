@@ -26,13 +26,13 @@ public class login extends javax.swing.JFrame {
     Color myCharcuterie = new Color(179, 202, 214);
     Connection conn;
     PreparedStatement ps;
-    
+    envPassword envPass = new envPassword();
         
     public login() {
         initComponents();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todoapp", "root", "ChizimAwele-123.");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todoapp", "root", envPass.Password);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

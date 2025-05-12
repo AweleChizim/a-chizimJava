@@ -32,13 +32,14 @@ public class home extends javax.swing.JFrame {
     Connection conn;
     PreparedStatement ps;
     private int id;
+    envPassword envPass = new envPassword();
     
     public home(int index) {
         initComponents();
         id = index;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todoapp", "root", "ChizimAwele-123.");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/todoapp", "root", envPass.Password);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(home.class.getName()).log(Level.SEVERE, null, ex);
         }
