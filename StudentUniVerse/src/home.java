@@ -416,10 +416,9 @@ public class home extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         try{
-            String m=null;
             String matNo = jTextField1.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universe", "root", "ChizimAwele-123.");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universe", "root", envPass.Password);
             System.out.println("connected");
             PreparedStatement ps = con.prepareStatement("select * from students where matNo=?");
                 ps.setString(1, matNo);
@@ -447,7 +446,7 @@ public class home extends javax.swing.JFrame {
             String phoneNo = jTextField4.getText();
             String bio = jTextArea1.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universe", "root", "ChizimAwele-123.");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universe", "root", envPass.Password);
             System.out.println("connected");
             PreparedStatement ps = con.prepareStatement("update students SET name=?, email=?, phoneNo=?, bio=? where matNo=?");
                 ps.setString(1, name);
@@ -472,7 +471,7 @@ public class home extends javax.swing.JFrame {
         try{
             String matNo = jTextField5.getText();
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universe", "root", "ChizimAwele-123.");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/universe", "root", envPass.Password);
             System.out.println("connected");
             PreparedStatement ps = con.prepareStatement("delete from students where matNo=?");
                 ps.setString(1, matNo);
