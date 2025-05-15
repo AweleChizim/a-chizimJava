@@ -22,7 +22,8 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
     }
-    env envPass = new env();
+    private String n = null;
+    env env = new env();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,6 +162,7 @@ public class login extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try{
+            n = null;
             String e=null;
             String p=null;
             String r=null;
@@ -176,30 +178,44 @@ public class login extends javax.swing.JFrame {
             String password = sb.toString();
             String roles[] = {"IT", "Ticketing", "Server", "Kitchen", "Head of Unit"};
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriaManagement", "root", envPass.Password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriaManagement", "root", env.Password);
             System.out.println("connected");
             PreparedStatement ps = con.prepareStatement("select * from staff where email=? and password=?");
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
+                n=rs.getString(1);
                 e=rs.getString(2);
                 p=rs.getString(3);
                 r=rs.getString(7);
             }
             if((email.equals(e))&&(password.equals(p))){
-                for (String role : roles) {
-                    if(roles[0].equals(r)){
-                        ITHome ITHomePage = new ITHome();
-                        ITHomePage.show();
-                        dispose();
-                    }
-                    else if(roles[3].equals(r)){
-                        kitchenHome kitchenHomePage = new kitchenHome();
-                        kitchenHomePage.show();
-                        dispose();
-                    }
+                if(roles[0].equals(r)){
+                    ITHome ITHomePage = new ITHome();
+                    ITHomePage.show();
+                    dispose();
                 }
+                else if(roles[1].equals(r)){
+                    ticketingHome ticketingHomePage = new ticketingHome(n);
+                    ticketingHomePage.show();
+                    dispose();
+                }
+                else if(roles[2].equals(r)){
+                    serverHome serverHomePage = new serverHome(n);
+                    serverHomePage.show();
+                    dispose();
+                }
+                else if(roles[3].equals(r)){
+                    kitchenHome kitchenHomePage = new kitchenHome();
+                    kitchenHomePage.show();
+                    dispose();
+                }
+                else if(roles[4].equals(r)){
+                    headOfUnitHome HoUHomePage = new headOfUnitHome();
+                    HoUHomePage.show();
+                    dispose();
+                }                
             }else{
                 JOptionPane.showMessageDialog(rootPane, "Invalid Login Details.");
             }
@@ -214,6 +230,10 @@ public class login extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Only Registered IT Admins can register staff.", "WARNING", 2);
     }//GEN-LAST:event_jLabel7MouseClicked
 
+    public String getName() {
+        return n;
+    }
+    
     /**
      * @param args the command line arguments
      */

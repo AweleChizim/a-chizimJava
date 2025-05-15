@@ -341,6 +341,8 @@ public class dailyJournal extends javax.swing.JFrame {
         try {
             jTextArea1.print();
         } catch (Exception e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(rootPane, "Error");
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
