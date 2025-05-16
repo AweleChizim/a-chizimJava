@@ -249,11 +249,10 @@ public class registration extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addComponent(jButton5)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jButton6)
-                                                .addGap(13, 13, 13))))
+                                                .addComponent(jButton6))))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(88, 88, 88)
                                         .addComponent(jLabel24))))
@@ -297,7 +296,7 @@ public class registration extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(26, 26, 26)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -368,17 +367,7 @@ public class registration extends javax.swing.JFrame {
                 sb.append(String.format("%02x", b));
             }
             String password = sb.toString();
-            
-            File image = new File(filename); //Converting photo to blob
-            FileInputStream fis = new FileInputStream(image);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] Byte = new byte[1024];
-            
-            for (int i; (i = fis.read(Byte)) != -1;) {
-                baos.write(Byte, 0, i);
-            }
-            photo = baos.toByteArray();
-            
+                        
             String name = jTextField10.getText();
             String email = jTextField11.getText();
             String phoneNo = jTextField13.getText();
@@ -404,7 +393,7 @@ public class registration extends javax.swing.JFrame {
             ps.setBytes(8, photo);
 
             int rs = ps.executeUpdate();
-            JOptionPane.showMessageDialog(rootPane, "Record Inserted Successfully!");
+            JOptionPane.showMessageDialog(rootPane, "Staff Account created successfully! Please hold on; we are sending you an email.");
             String receiver = jTextField11.getText();
             String subject = "Registration Successful";
             String body = "Good Day, "+ name + ". You have successfully created registered your Staff Account in the Cafeteria Management System\n\nYour login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nPlease verify your account by logging in.\nThank you for registering.\n\nAGC";
@@ -451,7 +440,9 @@ public class registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //take photo from webcam
+        camera newCapture =  new camera();
+        newCapture.show();
+        newCapture.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -468,6 +459,21 @@ public class registration extends javax.swing.JFrame {
         im = im.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon ic = new ImageIcon(im);
         jLabel2.setIcon(ic);
+         
+        try {
+            File image = new File(filename); //Converting photo to blob
+            FileInputStream fis = new FileInputStream(image);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] Byte = new byte[1024];
+
+            for (int i; (i = fis.read(Byte)) != -1;) {
+                baos.write(Byte, 0, i);
+            }
+            photo = baos.toByteArray();        
+        } catch (Exception e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(rootPane, "Error. Cannot Convert Photo to Blob");
+        }            
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
@@ -520,13 +526,13 @@ public class registration extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
+    public static javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
