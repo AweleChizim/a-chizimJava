@@ -1,3 +1,15 @@
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.sql.ResultSet;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -9,12 +21,22 @@
  */
 public class headOfUnitHome extends javax.swing.JFrame {
 
+    env env = new env();
     /**
      * Creates new form headOfUnitHome
      */
     public headOfUnitHome() {
         initComponents();
-    }
+        jLabel18.setVisible(false);
+        jTextField13.setVisible(false);
+        jButton5.setVisible(false);            
+        refreshTable();
+        /*Image im = Toolkit.getDefaultToolkit().createImage(env.Path);
+        im = im.getScaledInstance(jLabel2.getWidth(), jLabel2.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon ic = new ImageIcon(im);
+        jLabel5.setIcon(ic);*/
+        
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,37 +49,359 @@ public class headOfUnitHome extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField13 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTabbedPane1.setFont(new java.awt.Font("Garamond", 0, 13)); // NOI18N
+        jTabbedPane1.setBackground(new java.awt.Color(68, 41, 19));
+        jTabbedPane1.setForeground(new java.awt.Color(226, 209, 194));
+        jTabbedPane1.setFont(new java.awt.Font("Garamond", 1, 14)); // NOI18N
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(68, 41, 19));
+        jPanel1.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+
+        jLabel7.setBackground(new java.awt.Color(93, 64, 55));
+        jLabel7.setFont(new java.awt.Font("OCR A Extended", 1, 45)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(250, 243, 224));
+        jLabel7.setText("X");
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 41, 35), 3));
+        jLabel7.setOpaque(true);
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(886, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(404, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab1", jPanel1);
+        jTabbedPane1.addTab("DASHBOARD", jPanel1);
+
+        jPanel4.setBackground(new java.awt.Color(68, 41, 19));
+        jPanel4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+
+        jLabel10.setBackground(new java.awt.Color(93, 64, 55));
+        jLabel10.setFont(new java.awt.Font("OCR A Extended", 1, 45)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(250, 243, 224));
+        jLabel10.setText("X");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 41, 35), 3));
+        jLabel10.setOpaque(true);
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel10MouseExited(evt);
+            }
+        });
+
+        jTable1.setBackground(new java.awt.Color(226, 209, 194));
+        jTable1.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "MENU ITEM", "AVAILABLE PORTIONS", "PRICE"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton4.setBackground(new java.awt.Color(226, 209, 194));
+        jButton4.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(93, 64, 55));
+        jButton4.setText("RESET ALL PORTTONS");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(226, 209, 194));
+        jButton5.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(93, 64, 55));
+        jButton5.setText("SET PRICE");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(226, 209, 194));
+        jLabel18.setText("New Price:");
+
+        jTextField13.setFont(new java.awt.Font("Georgia", 0, 16)); // NOI18N
+
+        jButton6.setBackground(new java.awt.Color(226, 209, 194));
+        jButton6.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(93, 64, 55));
+        jButton6.setText("UPDATE PRICE");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)))
+                        .addGap(38, 38, 38))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(78, 78, 78))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jButton6)
+                        .addGap(66, 66, 66))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton5)))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("MENU", jPanel4);
+
+        jPanel2.setBackground(new java.awt.Color(68, 41, 19));
+        jPanel2.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel2MouseEntered(evt);
+            }
+        });
+
+        jLabel8.setBackground(new java.awt.Color(93, 64, 55));
+        jLabel8.setFont(new java.awt.Font("OCR A Extended", 1, 45)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(250, 243, 224));
+        jLabel8.setText("X");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 41, 35), 3));
+        jLabel8.setOpaque(true);
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel8MouseExited(evt);
+            }
+        });
+
+        jPanel5.setBackground(new java.awt.Color(226, 209, 194));
+        jPanel5.setForeground(new java.awt.Color(93, 64, 55));
+
+        jLabel1.setFont(new java.awt.Font("Georgia", 2, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(93, 64, 55));
+        jLabel1.setText("MOST ORDERED");
+
+        jLabel2.setFont(new java.awt.Font("Georgia", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(68, 41, 19));
+        jLabel2.setText("MENU ITEM");
+
+        jLabel3.setFont(new java.awt.Font("Georgia", 2, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(93, 64, 55));
+        jLabel3.setText("__ Orders");
+
+        jLabel4.setFont(new java.awt.Font("Georgia", 2, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(93, 64, 55));
+        jLabel4.setText("MENU ITEM");
+
+        jLabel5.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(93, 64, 55));
+        jLabel5.setText(" ");
+        jLabel5.setOpaque(true);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(54, 54, 54))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(886, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel2);
+        jTabbedPane1.addTab("INSIGHTS", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(68, 41, 19));
+        jPanel3.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
+
+        jLabel9.setBackground(new java.awt.Color(93, 64, 55));
+        jLabel9.setFont(new java.awt.Font("OCR A Extended", 1, 45)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(250, 243, 224));
+        jLabel9.setText("X");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 41, 35), 3));
+        jLabel9.setOpaque(true);
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel9MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel9MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(886, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(404, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("REPORTS", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,6 +417,185 @@ public class headOfUnitHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        login Login = new login();
+        Login.show();
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        jLabel7.setBackground(Color.red);
+        jLabel7.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        jLabel7.setBackground(new Color(93, 64, 55));
+        jLabel7.setForeground(new Color(250, 243, 224));
+    }//GEN-LAST:event_jLabel7MouseExited
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        login Login = new login();
+        Login.show();
+        dispose();
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        jLabel8.setBackground(Color.red);
+        jLabel8.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+        jLabel8.setBackground(new Color(93, 64, 55));
+        jLabel8.setForeground(new Color(250, 243, 224));
+    }//GEN-LAST:event_jLabel8MouseExited
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        login Login = new login();
+        Login.show();
+        dispose();
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
+        jLabel9.setBackground(Color.red);
+        jLabel9.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel9MouseEntered
+
+    private void jLabel9MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseExited
+        jLabel9.setBackground(new Color(93, 64, 55));
+        jLabel9.setForeground(new Color(250, 243, 224));
+    }//GEN-LAST:event_jLabel9MouseExited
+
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        login Login = new login();
+        Login.show();
+        dispose();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        jLabel10.setBackground(Color.red);
+        jLabel10.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        jLabel10.setBackground(new Color(93, 64, 55));
+        jLabel10.setForeground(new Color(250, 243, 224));
+    }//GEN-LAST:event_jLabel10MouseExited
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            
+            int confirmDelete = JOptionPane.showConfirmDialog(null, "Are you sure you want to set the available portions of all menu items to 0?", "Warning", JOptionPane.YES_NO_OPTION);
+
+            if(confirmDelete == JOptionPane.YES_OPTION){
+                PreparedStatement ps = con.prepareStatement("update menu SET portions_available=?");
+                ps.setInt(1, 0);
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "All available portions have been set to 0!");
+            }
+            refreshTable();
+        } catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(rootPane, "Error! Unable to update available portions. Please try again!");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {            
+            int newPrice = Integer.parseInt(jTextField13.getText());
+            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
+            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Updating the db
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            int selectedIndex = jTable1.getSelectedRow();
+            String menuItem = tm.getValueAt(selectedIndex, 0).toString();
+
+            int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to change the price of " + menuItem + "?", "Warning", JOptionPane.YES_NO_OPTION);
+
+            if(confirmUpdate == JOptionPane.YES_OPTION){
+                PreparedStatement ps = con.prepareStatement("update menu SET price_per_portion=? where menu_item=?");
+                ps.setInt(1, newPrice);
+                ps.setString(2, menuItem);
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Price of " + menuItem + " updated successfully!");
+            }
+            jLabel18.setVisible(false);
+            jTextField13.setVisible(false);
+            jTextField13.setText(null);
+            jButton5.setVisible(false);
+            refreshTable();
+        } catch(Exception e){
+            System.out.println(e);
+            JOptionPane.showMessageDialog(rootPane, "Error! Unable to update price. Please try again and ensure a row is selected!");
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jLabel18.setVisible(true);
+        jTextField13.setVisible(true);
+        jButton5.setVisible(true);                
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jPanel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseEntered
+        System.out.println("HI");
+    }//GEN-LAST:event_jPanel2MouseEntered
+
+    private void refreshTable() {
+        try{
+            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+            tm.setRowCount(0);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            PreparedStatement ps = con.prepareStatement("select * from menu");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String menuItem = rs.getString(1);
+                int portionsAvailable1 = rs.getInt(2);
+                int price1 = rs.getInt(3);
+                
+                String price = String.valueOf(price1);
+                String portionsAvailable = String.valueOf(portionsAvailable1);
+                String[] row = {menuItem, portionsAvailable, price};
+                tm.addRow(row);
+            }
+            jTable1.setModel(tm);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(rootPane, "Unable to read from DB.");
+        }
+    }
+    
+    private void getInsights() {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            //Working from here
+            PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) as total_qty_ordered from items group by menu_item;");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                jLabel2.setText(rs.getString(1));
+                jLabel3.setText(Integer.toString(rs.getInt(2)));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            JOptionPane.showMessageDialog(rootPane, "Unable to read from DB.");
+        }
+    }
+        
     /**
      * @param args the command line arguments
      */
@@ -109,8 +632,27 @@ public class headOfUnitHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField13;
     // End of variables declaration//GEN-END:variables
 }

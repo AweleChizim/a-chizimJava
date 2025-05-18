@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -67,6 +68,7 @@ public class kitchenHome extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,6 +177,24 @@ public class kitchenHome extends javax.swing.JFrame {
         jLabel2.setText("QUANTITY LOW");
         jLabel2.setOpaque(true);
 
+        jLabel7.setBackground(new java.awt.Color(93, 64, 55));
+        jLabel7.setFont(new java.awt.Font("OCR A Extended", 1, 45)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(250, 243, 224));
+        jLabel7.setText("X");
+        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(68, 41, 35), 3));
+        jLabel7.setOpaque(true);
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -227,14 +247,18 @@ public class kitchenHome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(238, 238, 238)
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
+                        .addContainerGap()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15))
@@ -351,15 +375,15 @@ public class kitchenHome extends javax.swing.JFrame {
             int portionsAvailable = 0;
             int newPortionsAvailable;
             DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Updating the db
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
             System.out.println("connected");
             int selectedIndex = jTable1.getSelectedRow();
             String menuItem = tm.getValueAt(selectedIndex, 0).toString();
 
-            int confirmDelete = JOptionPane.showConfirmDialog(null, "Are you sure you want to update the available portions?", "Warning", JOptionPane.YES_NO_OPTION);
+            int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to update the available portions?", "Warning", JOptionPane.YES_NO_OPTION);
 
-            if(confirmDelete == JOptionPane.YES_OPTION){
+            if(confirmUpdate == JOptionPane.YES_OPTION){
                 PreparedStatement ps = con.prepareStatement("select * from menu where menu_item=?");
                 ps.setString(1, menuItem);
                 ResultSet rs = ps.executeQuery();
@@ -385,6 +409,22 @@ public class kitchenHome extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Error! Unable to update available portions. Please try again and ensure a row is selected!");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        login Login = new login();
+        Login.show();
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
+        jLabel7.setBackground(Color.red);
+        jLabel7.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel7MouseEntered
+
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
+        jLabel7.setBackground(new Color(93, 64, 55));
+        jLabel7.setForeground(new Color(250, 243, 224));
+    }//GEN-LAST:event_jLabel7MouseExited
 
     private void refreshTable() {
         try{
@@ -459,6 +499,7 @@ public class kitchenHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

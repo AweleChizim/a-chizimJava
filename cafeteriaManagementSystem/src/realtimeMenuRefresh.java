@@ -7,7 +7,7 @@
  *
  * @author chizi
  */
-public class realTimeTableRefresh implements Runnable {
+public class realtimeMenuRefresh implements Runnable {
     @Override
     public void run() {
         try {

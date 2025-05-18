@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Date;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.MessagingException;
@@ -357,85 +359,104 @@ public class registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256"); //Hashing password here
-            String pass = new String(jPasswordField1.getPassword());
-            md.update(pass.getBytes());
-            byte[] rbt = md.digest();
-            StringBuilder sb = new StringBuilder();
-            for (byte b: rbt){
-                sb.append(String.format("%02x", b));
-            }
-            String password = sb.toString();
-                        
-            String name = jTextField10.getText();
-            String email = jTextField11.getText();
-            String phoneNo = jTextField13.getText();
-            Date dob = new Date(jDateChooser1.getDate().getTime());
-            String role = jComboBox1.getSelectedItem().toString();
-            String gender = null;
-            if (jRadioButton1.isSelected()){
-                gender = "M";
-            } else if (jRadioButton2.isSelected()){
-                gender = "F";
-            }
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-            PreparedStatement ps = con.prepareStatement("insert into staff values (?,?,?,?,?,?,?,?)");
-            ps.setString(1, name);
-            ps.setString(2, email);
-            ps.setString(3, password);
-            ps.setDate(4, dob);
-            ps.setString(5, phoneNo);
-            ps.setString(6, gender);
-            ps.setString(7, role);
-            ps.setBytes(8, photo);
-
-            int rs = ps.executeUpdate();
-            JOptionPane.showMessageDialog(rootPane, "Staff Account created successfully! Please hold on; we are sending you an email.");
-            String receiver = jTextField11.getText();
-            String subject = "Registration Successful";
-            String body = "Good Day, "+ name + ". You have successfully created registered your Staff Account in the Cafeteria Management System\n\nYour login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nPlease verify your account by logging in.\nThank you for registering.\n\nAGC";
-            String senderEmail = "chizimawele@gmail.com";
-            String senderPassword = "craqfussrsiirinn";
-
-            Properties props = new Properties();
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            props.put("mail.smtp.port", "587");
-
-            Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(senderEmail, senderPassword);
-                    }
-                });
-
+        boolean emailCheck=true, phoneNoCheck = true;
+        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";  
+        String email=jTextField11.getText();
+        Pattern pattern = Pattern.compile(regex);  
+        Matcher matcher = pattern.matcher(email);  
+        if (matcher.matches()) {
+            System.out.println("The email is valid");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please enter a valid email", "Error", JOptionPane.ERROR_MESSAGE);
+            emailCheck=false;
+        }
+        
+        if (!(Pattern.matches("^[0-9]{11}+$", jTextField13.getText()))) {
+            phoneNoCheck = false;
+            JOptionPane.showMessageDialog(null, "Please enter a valid phone number", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            System.out.println("The phone number is valid");
+        }
+        
+        if (phoneNoCheck && emailCheck) {
             try {
-                Message message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(senderEmail));
-                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
-                message.setSubject(subject);
-                message.setText(body);
-                Transport.send(message);
-                JOptionPane.showMessageDialog(rootPane, "Email Sent");
-            } catch (MessagingException e) {
-                JOptionPane.showMessageDialog(rootPane, e);
+                MessageDigest md = MessageDigest.getInstance("SHA-256"); //Hashing password here
+                String pass = new String(jPasswordField1.getPassword());
+                md.update(pass.getBytes());
+                byte[] rbt = md.digest();
+                StringBuilder sb = new StringBuilder();
+                for (byte b: rbt){
+                    sb.append(String.format("%02x", b));
+                }
+                String password = sb.toString();
+                String name = jTextField10.getText();
+                String phoneNo = jTextField13.getText();
+                Date dob = new Date(jDateChooser1.getDate().getTime());
+                String role = jComboBox1.getSelectedItem().toString();
+                String gender = null;
+                if (jRadioButton1.isSelected()){
+                    gender = "M";
+                } else if (jRadioButton2.isSelected()){
+                    gender = "F";
+                }
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
+                PreparedStatement ps = con.prepareStatement("insert into staff values (?,?,?,?,?,?,?,?)");
+                ps.setString(1, name);
+                ps.setString(2, email);
+                ps.setString(3, password);
+                ps.setDate(4, dob);
+                ps.setString(5, phoneNo);
+                ps.setString(6, gender);
+                ps.setString(7, role);
+                ps.setBytes(8, photo);
+
+                int rs = ps.executeUpdate();
+                JOptionPane.showMessageDialog(rootPane, "Staff Account created successfully! Please hold on; we are sending you an email.");
+                String receiver = jTextField11.getText();
+                String subject = "Registration Successful";
+                String body = "Good Day, "+ name + ". You have successfully created registered your Staff Account in the Cafeteria Management System\n\nYour login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nPlease verify your account by logging in.\nThank you for registering.\n\nAGC";
+                String senderEmail = "chizimawele@gmail.com";
+                String senderPassword = "craqfussrsiirinn";
+
+                Properties props = new Properties();
+                props.put("mail.smtp.auth", "true");
+                props.put("mail.smtp.starttls.enable", "true");
+                props.put("mail.smtp.host", "smtp.gmail.com");
+                props.put("mail.smtp.port", "587");
+
+                Session session = Session.getInstance(props,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(senderEmail, senderPassword);
+                        }
+                    });
+
+                try {
+                    Message message = new MimeMessage(session);
+                    message.setFrom(new InternetAddress(senderEmail));
+                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
+                    message.setSubject(subject);
+                    message.setText(body);
+                    Transport.send(message);
+                    JOptionPane.showMessageDialog(rootPane, "Email Sent");
+                } catch (MessagingException e) {
+                    JOptionPane.showMessageDialog(rootPane, e);
+                }
+                jTextField10.setText(null); 
+                jTextField11.setText(null);
+                jTextField13.setText(null);
+                jPasswordField1.setText(null);
+                jDateChooser1.setDate(null);
+                jLabel1.setText(null);
+                jLabel2.setIcon(null);
+                jComboBox1.setSelectedIndex(0);
+                filename = null;
+            } catch(Exception e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Error");
             }
-            jTextField10.setText(null); 
-            jTextField11.setText(null);
-            jTextField13.setText(null);
-            jPasswordField1.setText(null);
-            jDateChooser1.setDate(null);
-            jLabel1.setText(null);
-            jLabel2.setIcon(null);
-            jComboBox1.setSelectedIndex(0);
-            filename = null;
-        } catch(Exception e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Error");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
