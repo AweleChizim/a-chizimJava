@@ -42,7 +42,14 @@ public class kitchenHome extends javax.swing.JFrame {
         jButton3.setVisible(false);
         jButton4.setVisible(false);
         jTextArea1.setVisible(false);
-        jScrollPane2.setVisible(false);       
+        jScrollPane2.setVisible(false);  
+        
+        kitchenMenuRefresh kmr = new kitchenMenuRefresh();
+        Thread t = new Thread(kmr);
+        t.start();
+        HoUandKitchenRTNotification rtn = new HoUandKitchenRTNotification();
+        Thread tt = new Thread(rtn);
+        tt.start();
     }
     
     /**
@@ -102,6 +109,7 @@ public class kitchenHome extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setBackground(new java.awt.Color(226, 209, 194));
@@ -533,13 +541,13 @@ public class kitchenHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
+    public static javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    public static javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    public static javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
