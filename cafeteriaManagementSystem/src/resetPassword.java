@@ -1,4 +1,5 @@
 
+import java.awt.Toolkit;
 import java.security.MessageDigest;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,6 +33,7 @@ public class resetPassword extends javax.swing.JFrame {
      */
     public resetPassword() {
         initComponents();
+        setIconImage();
         jLabel18.setVisible(false);
         jPasswordField1.setVisible(false);
         jButton4.setVisible(false);
@@ -209,6 +211,10 @@ public class resetPassword extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             String email = jTextField11.getText();

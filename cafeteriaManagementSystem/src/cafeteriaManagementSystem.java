@@ -1,3 +1,6 @@
+
+import java.awt.Toolkit;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -14,6 +17,7 @@ public class cafeteriaManagementSystem extends javax.swing.JFrame {
      */
     public cafeteriaManagementSystem() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -117,6 +121,10 @@ public class cafeteriaManagementSystem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         login Login = new login();
         Login.show();

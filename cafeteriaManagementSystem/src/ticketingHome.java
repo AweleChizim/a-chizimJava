@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,6 +28,7 @@ public class ticketingHome extends javax.swing.JFrame {
     public int orderNo, totalPrice;
     public ticketingHome(String name) {
         initComponents();
+        setIconImage();
         buttonGroup1.add(jRadioButton1);
         buttonGroup1.add(jRadioButton2);
         buttonGroup1.add(jRadioButton3);
@@ -162,8 +164,8 @@ public class ticketingHome extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(226, 209, 194));
         jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(93, 64, 55));
-        jLabel2.setText("QUANTITY LOW");
+        jLabel2.setForeground(new java.awt.Color(234, 0, 51));
+        jLabel2.setText(" QUANTITY LOW!!!");
         jLabel2.setOpaque(true);
 
         jTable2.setBackground(new java.awt.Color(226, 209, 194));
@@ -326,78 +328,6 @@ public class ticketingHome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(162, 162, 162)
-                                .addComponent(jLabel20))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addComponent(jButton2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jButton4)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)))
-                .addGap(74, 74, 74)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(187, 187, 187))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 33, 33)
-                                .addComponent(jButton8)
-                                .addGap(11, 11, 11))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel19)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jRadioButton1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jRadioButton3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jRadioButton2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jRadioButton4)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(127, 127, 127)
-                                .addComponent(jButton3))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jButton5)
-                                .addGap(53, 53, 53)
-                                .addComponent(jButton7)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(243, 243, 243))
@@ -407,6 +337,76 @@ public class ticketingHome extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jLabel7)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel20))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jButton4)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel21)
+                            .addGap(189, 189, 189))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jButton3)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jRadioButton1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jRadioButton3)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jRadioButton2)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jRadioButton4)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(26, 26, 26)
+                                    .addComponent(jButton5)
+                                    .addGap(53, 53, 53)
+                                    .addComponent(jButton7)))
+                            .addGap(55, 55, 55))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel23)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(26, 26, 26)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton8)
+                        .addGap(88, 88, 88))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(347, 347, 347))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,9 +418,9 @@ public class ticketingHome extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,19 +430,11 @@ public class ticketingHome extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
                             .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -452,22 +444,29 @@ public class ticketingHome extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton7)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
                             .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8))
-                        .addGap(18, 18, 18)
+                        .addGap(26, 26, 26)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton1)
                             .addComponent(jRadioButton2)
                             .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(15, 15, 15))))
+                            .addComponent(jRadioButton4))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -481,13 +480,17 @@ public class ticketingHome extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jLabel18.setVisible(true);
         jTextField13.setVisible(true);
@@ -552,102 +555,106 @@ public class ticketingHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-            int count = jTable2.getRowCount();
-            String menuItems[] = new String[count];
-            int portionsOrdered[] = new int[count];
-            int updatedAvailablePortions[] = new int[count];
-            String paymentMethod = null;
-            Date orderDate = new Date(System.currentTimeMillis());
-            DefaultTableModel tm2 = (DefaultTableModel) jTable2.getModel();
-            for (int rowNo=0; rowNo<jTable2.getRowCount(); rowNo++){
-                totalPrice = totalPrice + Integer.parseInt(tm2.getValueAt(rowNo, 2).toString());
-            }
-            if (jRadioButton1.isSelected()){
-                paymentMethod = "Cash";
-            } else if (jRadioButton2.isSelected()){
-                paymentMethod = "Card";
-            } else if (jRadioButton3.isSelected()){
-                paymentMethod = "Transfer";
-            } else if (jRadioButton4.isSelected()){
-                paymentMethod = "Others";
-            }   
-            for (int rowNo=0; rowNo<jTable2.getRowCount(); rowNo++){
-                menuItems[rowNo] = tm2.getValueAt(rowNo, 0).toString();
-                portionsOrdered[rowNo] = Integer.parseInt(tm2.getValueAt(rowNo, 1).toString());
-            }            
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-            
-            if (totalPrice == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Cannot make an empty order");
-            } else {
-                PreparedStatement ps = con.prepareStatement("insert into orders (total_price, payment_method, status, order_date, ticket_by) values (?,?,?,?,?)");
-                ps.setInt(1, totalPrice);
-                ps.setString(2, paymentMethod);
-                ps.setString(3, "Not Served");  
-                ps.setDate(4, orderDate);
-                ps.setString(5, ticketer);
-                int rs = ps.executeUpdate();
-
-                PreparedStatement ps1 = con.prepareStatement("SELECT LAST_INSERT_ID()");
-                ResultSet rs1 = ps1.executeQuery();
-                if(rs1.next()){
-                    orderNo=rs1.getInt(1);
+        if (ticketer == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Ticketing Staff logged in. Please login and try again!", "WARNING!", 2);
+        } else {
+            try {
+                int count = jTable2.getRowCount();
+                String menuItems[] = new String[count];
+                int portionsOrdered[] = new int[count];
+                int updatedAvailablePortions[] = new int[count];
+                String paymentMethod = null;
+                Date orderDate = new Date(System.currentTimeMillis());
+                DefaultTableModel tm2 = (DefaultTableModel) jTable2.getModel();
+                for (int rowNo=0; rowNo<jTable2.getRowCount(); rowNo++){
+                    totalPrice = totalPrice + Integer.parseInt(tm2.getValueAt(rowNo, 2).toString());
+                }
+                if (jRadioButton1.isSelected()){
+                    paymentMethod = "Cash";
+                } else if (jRadioButton2.isSelected()){
+                    paymentMethod = "Card";
+                } else if (jRadioButton3.isSelected()){
+                    paymentMethod = "Transfer";
+                } else if (jRadioButton4.isSelected()){
+                    paymentMethod = "Others";
+                }   
+                for (int rowNo=0; rowNo<jTable2.getRowCount(); rowNo++){
+                    menuItems[rowNo] = tm2.getValueAt(rowNo, 0).toString();
+                    portionsOrdered[rowNo] = Integer.parseInt(tm2.getValueAt(rowNo, 1).toString());
                 }            
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
 
-                PreparedStatement ps2 = con.prepareStatement("insert into items values (?,?,?,?)");
-                for (int row=0; row<jTable2.getRowCount(); row++){
-                    for (int col=0; col<jTable2.getColumnCount(); col++){
-                        Object value = jTable2.getValueAt(row, col);
-                        ps2.setObject(col+1, value);
+                if (totalPrice == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Cannot make an empty order");
+                } else {
+                    PreparedStatement ps = con.prepareStatement("insert into orders (total_price, payment_method, status, order_date, ticket_by) values (?,?,?,?,?)");
+                    ps.setInt(1, totalPrice);
+                    ps.setString(2, paymentMethod);
+                    ps.setString(3, "Not Served");  
+                    ps.setDate(4, orderDate);
+                    ps.setString(5, ticketer);
+                    int rs = ps.executeUpdate();
+
+                    PreparedStatement ps1 = con.prepareStatement("SELECT LAST_INSERT_ID()");
+                    ResultSet rs1 = ps1.executeQuery();
+                    if(rs1.next()){
+                        orderNo=rs1.getInt(1);
+                    }            
+
+                    PreparedStatement ps2 = con.prepareStatement("insert into items values (?,?,?,?,?)");
+                    for (int row=0; row<jTable2.getRowCount(); row++){
+                        for (int col=0; col<jTable2.getColumnCount(); col++){
+                            Object value = jTable2.getValueAt(row, col);
+                            ps2.setObject(col+1, value);
+                        }
+                        ps2.setInt(4, orderNo);
+                        ps2.setDate(5, orderDate);
+                        ps2.executeUpdate();
                     }
-                    ps2.setInt(4, orderNo);
-                    ps2.executeUpdate();
-                }
 
-                //Issue occurs when updating the portions of food left after order
-                PreparedStatement ps3 = con.prepareStatement("select * from menu where menu_item = ?");
-                for (int index=0; index<menuItems.length; index++){
-                    ps3.setString(1, menuItems[index]);
-                    ResultSet rs3 = ps3.executeQuery();
-                    if(rs3.next()){
-                        updatedAvailablePortions[index] = rs3.getInt(2) - portionsOrdered[index];
+                    //Issue occurs when updating the portions of food left after order
+                    PreparedStatement ps3 = con.prepareStatement("select * from menu where menu_item = ?");
+                    for (int index=0; index<menuItems.length; index++){
+                        ps3.setString(1, menuItems[index]);
+                        ResultSet rs3 = ps3.executeQuery();
+                        if(rs3.next()){
+                            updatedAvailablePortions[index] = rs3.getInt(2) - portionsOrdered[index];
+                        }
+                        System.out.println(updatedAvailablePortions[index]);
                     }
-                    System.out.println(updatedAvailablePortions[index]);
-                }
 
-                PreparedStatement ps4 = con.prepareStatement("update menu set portions_available = ? where menu_item = ?");
-                for (int index=0; index<menuItems.length; index++){
-                    ps4.setInt(1, updatedAvailablePortions[index]);
-                    ps4.setString(2, menuItems[index]);
-                    ps4.executeUpdate();
-                }
-
-                JOptionPane.showMessageDialog(rootPane, "The Ticket Order NO is: "+ orderNo);
-                int confirmDelete = JOptionPane.showConfirmDialog(rootPane, "Do you want to print out the receipt?", "Print Receipt", 0, 3);
-
-                if(confirmDelete == JOptionPane.YES_OPTION){
-                    String text = "Order NO: " + orderNo + "\n" + "Ticketing By: " + ticketer + "\n" + "Date: " + orderDate + "\n" + "Status: NOT SERVED\n\nQTY ITEM                      PRICE\n"; 
-                    for (int rowNo=0; rowNo<jTable2.getRowCount(); rowNo++){
-                        text = text.concat(portionsOrdered[rowNo] + "        " + menuItems[rowNo] + "                    " + jTable2.getValueAt(rowNo, 2) + "\n");
+                    PreparedStatement ps4 = con.prepareStatement("update menu set portions_available = ? where menu_item = ?");
+                    for (int index=0; index<menuItems.length; index++){
+                        ps4.setInt(1, updatedAvailablePortions[index]);
+                        ps4.setString(2, menuItems[index]);
+                        ps4.executeUpdate();
                     }
-                    text = text.concat("\nPayment Method: " + paymentMethod + "\nTotal Price: N" + totalPrice + "\n\t\t\t\tPayment Confirmed.");
-                    jTextArea2.setText(text);
-                    jTextArea2.print();
-                    jTextArea2.setText(null);
+
+                    JOptionPane.showMessageDialog(rootPane, "The Ticket Order NO is: "+ orderNo);
+                    int confirmDelete = JOptionPane.showConfirmDialog(rootPane, "Do you want to print out the receipt?", "Print Receipt", 0, 3);
+
+                    if(confirmDelete == JOptionPane.YES_OPTION){
+                        String text = "Order NO: " + orderNo + "\n" + "Ticketing By: " + ticketer + "\n" + "Date: " + orderDate + "\n" + "Status: NOT SERVED\n\nQTY ITEM                      PRICE\n"; 
+                        for (int rowNo=0; rowNo<jTable2.getRowCount(); rowNo++){
+                            text = text.concat(portionsOrdered[rowNo] + "        " + menuItems[rowNo] + "                    " + jTable2.getValueAt(rowNo, 2) + "\n");
+                        }
+                        text = text.concat("\nPayment Method: " + paymentMethod + "\nTotal Price: N" + totalPrice + "\n\t\t\t\tPayment Confirmed.");
+                        jTextArea2.setText(text);
+                        jTextArea2.print();
+                        jTextArea2.setText(null);
+                    }
+                    refreshMenu();
+                    tm2.setRowCount(0);
+                    totalPrice = 0;
+                    jLabel24.setText(Integer.toString(totalPrice));
                 }
-                refreshMenu();
-                tm2.setRowCount(0);
-                totalPrice = 0;
-                jLabel24.setText(Integer.toString(totalPrice));
+            } catch (Exception e) {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Error");
             }
-        } catch (Exception e) {
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Error");
-        }
-
+        }      
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
@@ -721,7 +728,7 @@ public class ticketingHome extends javax.swing.JFrame {
         jLabel7.setForeground(new Color(250, 243, 224));
     }//GEN-LAST:event_jLabel7MouseExited
     
-    private void refreshMenu() {
+    public void refreshMenu() {
         try{
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             tm.setRowCount(0);
@@ -803,9 +810,6 @@ public class ticketingHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
@@ -816,7 +820,7 @@ public class ticketingHome extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;

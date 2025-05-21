@@ -1,6 +1,7 @@
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -43,6 +44,7 @@ public class camera extends javax.swing.JFrame {
      */
     public camera() {
         initComponents();
+        setIconImage();
         websource = new VideoCapture(0);
         myThread = new DaemonThread(jLabel1);
         Thread t = new Thread(myThread);
@@ -98,6 +100,10 @@ public class camera extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int option = JOptionPane.showConfirmDialog(rootPane, "Are you sure you want to capture the image?");
         if(option == 0) {

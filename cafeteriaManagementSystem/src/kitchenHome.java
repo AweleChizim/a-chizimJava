@@ -1,6 +1,8 @@
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,9 +24,12 @@ public class kitchenHome extends javax.swing.JFrame {
      * Creates new form kitchenHome
      */
     env env = new env();
-    public kitchenHome() {
+    public String kitchenStaff;    
+    public kitchenHome(String name) {
         initComponents();
         refreshTable();
+        setIconImage();
+        kitchenStaff = name;
         jLabel15.setVisible(false);
         jLabel16.setVisible(false);
         jLabel17.setVisible(false);
@@ -37,7 +42,7 @@ public class kitchenHome extends javax.swing.JFrame {
         jButton3.setVisible(false);
         jButton4.setVisible(false);
         jTextArea1.setVisible(false);
-        jScrollPane2.setVisible(false);
+        jScrollPane2.setVisible(false);       
     }
     
     /**
@@ -173,8 +178,8 @@ public class kitchenHome extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(226, 209, 194));
         jLabel2.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(93, 64, 55));
-        jLabel2.setText("QUANTITY LOW");
+        jLabel2.setForeground(new java.awt.Color(234, 0, 51));
+        jLabel2.setText(" QUANTITY LOW!!!");
         jLabel2.setOpaque(true);
 
         jLabel7.setBackground(new java.awt.Color(93, 64, 55));
@@ -203,46 +208,38 @@ public class kitchenHome extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1)
-                        .addGap(70, 70, 70)
-                        .addComponent(jButton2)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel15)
-                                            .addComponent(jLabel17))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                                            .addComponent(jTextField11)
-                                            .addComponent(jTextField12)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(26, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel17))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                    .addComponent(jTextField11)
+                                    .addComponent(jTextField12)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jButton3)
-                                        .addGap(122, 122, 122))
+                                        .addGap(96, 96, 96))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jButton4)
-                                        .addGap(140, 140, 140))))))
+                                        .addGap(114, 114, 114)))))
+                        .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(238, 238, 238)
@@ -250,6 +247,12 @@ public class kitchenHome extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jButton1)
+                .addGap(70, 70, 70)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,19 +281,19 @@ public class kitchenHome extends javax.swing.JFrame {
                             .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButton4))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addGap(30, 30, 30)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -310,6 +313,10 @@ public class kitchenHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jLabel15.setVisible(true);
         jLabel16.setVisible(true);
@@ -337,76 +344,103 @@ public class kitchenHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {            
-            String menuItem = jTextField10.getText();
-            int portionsAvailable = Integer.parseInt(jTextField11.getText());
-            int price = Integer.parseInt(jTextField12.getText());
-            
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-            PreparedStatement ps = con.prepareStatement("insert into menu values (?,?,?)");
-            ps.setString(1, menuItem);
-            ps.setInt(2, portionsAvailable);
-            ps.setInt(3, price);            
-            int rs = ps.executeUpdate();
-            JOptionPane.showMessageDialog(rootPane, "Item Added to DB Successfully");
-            
-            jLabel15.setVisible(false);
-            jLabel16.setVisible(false);
-            jLabel17.setVisible(false);
-            jTextField10.setVisible(false);
-            jTextField11.setVisible(false);
-            jTextField12.setVisible(false);
-            jButton3.setVisible(false);
-            jTextField10.setText(null); 
-            jTextField11.setText(null);
-            jTextField12.setText(null);
-            refreshTable();
-        } catch(Exception e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Error! Unable to add item to DB. Please try again.");
-        }        
+        if (kitchenStaff == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Kitchen Staff logged in. Please login and try again!", "WARNING!", 2);
+        } else {
+            try {            
+                String menuItem = jTextField10.getText();
+                int portionsAvailable = Integer.parseInt(jTextField11.getText());
+                int price = Integer.parseInt(jTextField12.getText());
+                Date dateCreated = new Date(System.currentTimeMillis());            
+
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
+                PreparedStatement ps = con.prepareStatement("insert into menu values (?,?,?)");
+                ps.setString(1, menuItem);
+                ps.setInt(2, portionsAvailable);
+                ps.setInt(3, price);            
+                int rs = ps.executeUpdate();
+
+                PreparedStatement ps2 = con.prepareStatement("insert into updated_menu(menu_item, portions_added, updated_by, action_done, date_updated) values  (?,?,?,?,?)");
+                ps2.setString(1, menuItem);
+                ps2.setInt(2, portionsAvailable);
+                ps2.setString(3, kitchenStaff);  
+                ps2.setString(4, "Created");  
+                ps2.setDate(5, dateCreated);  
+                int rs2 = ps2.executeUpdate();
+
+                JOptionPane.showMessageDialog(rootPane, "Item Added to DB Successfully");
+
+                jLabel15.setVisible(false);
+                jLabel16.setVisible(false);
+                jLabel17.setVisible(false);
+                jTextField10.setVisible(false);
+                jTextField11.setVisible(false);
+                jTextField12.setVisible(false);
+                jButton3.setVisible(false);
+                jTextField10.setText(null); 
+                jTextField11.setText(null);
+                jTextField12.setText(null);
+                refreshTable();
+            } catch(Exception e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Error! Unable to add item to DB. Please try again.");
+            }    
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {            
-            int addedPortions = Integer.parseInt(jTextField13.getText());
-            int portionsAvailable = 0;
-            int newPortionsAvailable;
-            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Updating the db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-            int selectedIndex = jTable1.getSelectedRow();
-            String menuItem = tm.getValueAt(selectedIndex, 0).toString();
+        if (kitchenStaff == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Kitchen Staff logged in. Please login and try again!", "WARNING!", 2);
+        } else {
+            try {            
+                int addedPortions = Integer.parseInt(jTextField13.getText());
+                int portionsAvailable = 0;
+                int newPortionsAvailable;
+                Date dateUpdated = new Date(System.currentTimeMillis());            
+                DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Updating the db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
+                int selectedIndex = jTable1.getSelectedRow();
+                String menuItem = tm.getValueAt(selectedIndex, 0).toString();
 
-            int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to update the available portions?", "Warning", JOptionPane.YES_NO_OPTION);
+                int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to update the available portions?", "Warning", JOptionPane.YES_NO_OPTION);
 
-            if(confirmUpdate == JOptionPane.YES_OPTION){
-                PreparedStatement ps = con.prepareStatement("select * from menu where menu_item=?");
-                ps.setString(1, menuItem);
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    portionsAvailable = rs.getInt(2);
+                if(confirmUpdate == JOptionPane.YES_OPTION){
+                    PreparedStatement ps = con.prepareStatement("select * from menu where menu_item=?");
+                    ps.setString(1, menuItem);
+                    ResultSet rs = ps.executeQuery();
+                    while (rs.next()) {
+                        portionsAvailable = rs.getInt(2);
+                    }
+                    newPortionsAvailable = portionsAvailable + addedPortions;
+                    PreparedStatement ps2 = con.prepareStatement("update menu SET portions_available=? where menu_item=?");
+                    ps2.setInt(1, newPortionsAvailable);
+                    ps2.setString(2, menuItem);
+                    ps2.executeUpdate();
+
+                    PreparedStatement ps3 = con.prepareStatement("insert into updated_menu(menu_item, portions_added, updated_by, action_done, date_updated) values  (?,?,?,?,?)");
+                    ps3.setString(1, menuItem);
+                    ps3.setInt(2, addedPortions);
+                    ps3.setString(3, kitchenStaff);  
+                    ps3.setString(4, "Updated");  
+                    ps3.setDate(5, dateUpdated);  
+                    int rs3 = ps3.executeUpdate();
+
+                    JOptionPane.showMessageDialog(this, "Available Portions Updated Successfully!");
                 }
-                newPortionsAvailable = portionsAvailable + addedPortions;
-                PreparedStatement ps2 = con.prepareStatement("update menu SET portions_available=? where menu_item=?");
-                ps2.setInt(1, newPortionsAvailable);
-                ps2.setString(2, menuItem);
-                ps2.executeUpdate();
-
-                JOptionPane.showMessageDialog(this, "Available Portions Updated Successfully!");
+                tm.removeRow(selectedIndex);
+                jLabel18.setVisible(false);
+                jTextField13.setVisible(false);
+                jButton4.setVisible(false);
+                jTextField13.setText(null); 
+                refreshTable();
+            } catch(Exception e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Error! Unable to update available portions. Please try again and ensure a row is selected!");
             }
-            tm.removeRow(selectedIndex);
-            jLabel18.setVisible(false);
-            jTextField13.setVisible(false);
-            jButton4.setVisible(false);
-            jTextField13.setText(null); 
-            refreshTable();
-        } catch(Exception e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Error! Unable to update available portions. Please try again and ensure a row is selected!");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -426,7 +460,7 @@ public class kitchenHome extends javax.swing.JFrame {
         jLabel7.setForeground(new Color(250, 243, 224));
     }//GEN-LAST:event_jLabel7MouseExited
 
-    private void refreshTable() {
+    public void refreshTable() {
         try{
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             tm.setRowCount(0);
@@ -482,8 +516,9 @@ public class kitchenHome extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            private String name;
             public void run() {
-                new kitchenHome().setVisible(true);
+                new kitchenHome(name).setVisible(true);
             }
         });
     }
@@ -503,7 +538,7 @@ public class kitchenHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    public static javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;

@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,6 +26,7 @@ public class serverHome extends javax.swing.JFrame {
     public String status = null;
     public serverHome(String name) {
         initComponents();
+        setIconImage();
         jLabel4.setVisible(false);
         jLabel5.setVisible(false);
         jButton2.setVisible(false);
@@ -246,11 +248,15 @@ public class serverHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int orderID = Integer.parseInt(jTextField1.getText());
         status = null;
         if (server == null) {
-            JOptionPane.showMessageDialog(rootPane, "No Staff logged in. Please login and try again!", "WARNING!", 2);
+            JOptionPane.showMessageDialog(rootPane, "No Server logged in. Please login and try again!", "WARNING!", 2);
         } else{
             try{
                 Class.forName("com.mysql.cj.jdbc.Driver");

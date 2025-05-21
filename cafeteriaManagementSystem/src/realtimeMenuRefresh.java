@@ -8,7 +8,6 @@
  * @author chizi
  */
 public class realtimeMenuRefresh implements Runnable {
-    @Override
     public void run() {
         try {
            for(;;) {              

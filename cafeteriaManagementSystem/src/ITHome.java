@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Toolkit;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,6 +18,7 @@ public class ITHome extends javax.swing.JFrame {
      */
     public ITHome() {
         initComponents();
+        setIconImage();
     }
 
     /**
@@ -149,6 +151,10 @@ public class ITHome extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("logo.png")));
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         registration Reg = new registration();
         Reg.show();
