@@ -40,17 +40,23 @@ public class headOfUnitHome extends javax.swing.JFrame {
         jScrollPane4.setVisible(false);
         jTable5.setVisible(false);
         jScrollPane6.setVisible(false);
+        jScrollPane3.setBounds(100, 150, 400, 400);
         refreshTable();
         HoUName = name;
         setIcon();
         getInsights();
         
-        HoUMenuRefresh hmr = new HoUMenuRefresh();
-        Thread t = new Thread(hmr);
+        orderDashboardRT odrt = new orderDashboardRT();
+        Thread t = new Thread(odrt);
         t.start();
-        HoUandKitchenRTNotification rtn = new HoUandKitchenRTNotification();
-        Thread tt = new Thread(rtn);
+        HoUMenuRefresh hmr = new HoUMenuRefresh();
+        Thread tt = new Thread(hmr);
         tt.start();
+        /*
+        HoUandKitchenRTNotification rtn = new HoUandKitchenRTNotification();
+        Thread t3 = new Thread(rtn);
+        t3.start();
+        */
     }    
 
     /**
@@ -73,7 +79,6 @@ public class headOfUnitHome extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -153,7 +158,9 @@ public class headOfUnitHome extends javax.swing.JFrame {
         jTable2.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "ORDER ID", "TOTAL PRICE", "PAYMENT METHOD", "ORDER STATUS", "ORDER DATE"
@@ -167,7 +174,13 @@ public class headOfUnitHome extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setShowGrid(false);
         jTable2.getTableHeader().setReorderingAllowed(false);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable2);
 
         jComboBox3.setBackground(new java.awt.Color(226, 209, 194));
@@ -184,7 +197,10 @@ public class headOfUnitHome extends javax.swing.JFrame {
         jTable3.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "STAFF NAME", "ROLE", "ACTION", "DATE"
@@ -205,14 +221,16 @@ public class headOfUnitHome extends javax.swing.JFrame {
         jTable5.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "MENU ITEM", "PORTIONS ORDERED"
+                "MENU ITEM", "PORTIONS ORDERED", "PRICE"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -226,11 +244,11 @@ public class headOfUnitHome extends javax.swing.JFrame {
         jComboBox4.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
         jComboBox4.setForeground(new java.awt.Color(68, 41, 19));
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Order ID", "Total Price", "Payment Method", "Order Status", "Date" }));
-
-        jComboBox5.setBackground(new java.awt.Color(226, 209, 194));
-        jComboBox5.setFont(new java.awt.Font("Georgia", 0, 14)); // NOI18N
-        jComboBox5.setForeground(new java.awt.Color(68, 41, 19));
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Staff Name", "Role", "Date" }));
+        jComboBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox4ActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Georgia", 1, 36)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(226, 209, 194));
@@ -245,7 +263,6 @@ public class headOfUnitHome extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(328, 328, 328)
                                 .addComponent(jLabel15))
@@ -253,14 +270,14 @@ public class headOfUnitHome extends javax.swing.JFrame {
                                 .addGap(26, 26, 26)
                                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(38, 38, 38)
-                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79))))
@@ -275,8 +292,7 @@ public class headOfUnitHome extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -954,68 +970,86 @@ public class headOfUnitHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        try {
-            int newPrice = Integer.parseInt(jTextField13.getText());
-            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Updating the db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-            int selectedIndex = jTable1.getSelectedRow();
-            String menuItem = tm.getValueAt(selectedIndex, 0).toString();
+        if (HoUName == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Head of Unit logged in. Please login and try again!", "WARNING!", 2);
+        } else { 
+            try {
+                int newPrice = Integer.parseInt(jTextField13.getText());
+                Date dateUpdated = new Date(System.currentTimeMillis());            
+                DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Updating the db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
+                int selectedIndex = jTable1.getSelectedRow();
+                String menuItem = tm.getValueAt(selectedIndex, 0).toString();
 
-            int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to change the price of " + menuItem + "?", "Warning", JOptionPane.YES_NO_OPTION);
+                int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to change the price of " + menuItem + "?", "Warning", JOptionPane.YES_NO_OPTION);
 
-            if(confirmUpdate == JOptionPane.YES_OPTION){
-                PreparedStatement ps = con.prepareStatement("update menu SET price_per_portion=? where menu_item=?");
-                ps.setInt(1, newPrice);
-                ps.setString(2, menuItem);
-                ps.executeUpdate();
+                if(confirmUpdate == JOptionPane.YES_OPTION){
+                    PreparedStatement ps = con.prepareStatement("update menu SET price_per_portion=? where menu_item=?");
+                    ps.setInt(1, newPrice);
+                    ps.setString(2, menuItem);
+                    ps.executeUpdate();
 
-                JOptionPane.showMessageDialog(this, "Price of " + menuItem + " updated successfully!");
+                    PreparedStatement ps3 = con.prepareStatement("insert into updated_menu(menu_item, portions_added, updated_by, action_done, date_updated) values  (?,?,?,?,?)");
+                    ps3.setString(1, menuItem);
+                    ps3.setInt(2, 0);
+                    ps3.setString(3, HoUName);  
+                    ps3.setString(4, "Cleared");  
+                    ps3.setDate(5, dateUpdated);  
+                    int rs3 = ps3.executeUpdate();
+                    
+                    JOptionPane.showMessageDialog(this, "Price of " + menuItem + " updated successfully!");
+                }
+                jLabel18.setVisible(false);
+                jTextField13.setVisible(false);
+                jTextField13.setText(null);
+                jButton5.setVisible(false);
+                refreshTable();
+            } catch(Exception e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Error! Unable to update price. Please try again and ensure a row is selected!");
             }
-            jLabel18.setVisible(false);
-            jTextField13.setVisible(false);
-            jTextField13.setText(null);
-            jButton5.setVisible(false);
-            refreshTable();
-        } catch(Exception e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Error! Unable to update price. Please try again and ensure a row is selected!");
         }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        try {
-            Date dateUpdated = new Date(System.currentTimeMillis());            
-            DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-            int selectedIndex = jTable1.getSelectedRow();
-            String menuItem = tm.getValueAt(selectedIndex, 0).toString();
+        if (HoUName == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Head of Unit logged in. Please login and try again!", "WARNING!", 2);
+        } else { 
+            try {
+                Date dateUpdated = new Date(System.currentTimeMillis());            
+                DefaultTableModel tm = (DefaultTableModel)jTable1.getModel();
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
+                int selectedIndex = jTable1.getSelectedRow();
+                String menuItem = tm.getValueAt(selectedIndex, 0).toString();
 
-            int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to set the available portions of  " + menuItem + "to 0?", "Warning", JOptionPane.YES_NO_OPTION);
+                int confirmUpdate = JOptionPane.showConfirmDialog(null, "Are you sure you want to set the available portions of  " + menuItem + "to 0?", "Warning", JOptionPane.YES_NO_OPTION);
 
-            if(confirmUpdate == JOptionPane.YES_OPTION){
-                PreparedStatement ps = con.prepareStatement("update menu SET portions_available=? where menu_item=?");
-                ps.setInt(1, 0);
-                ps.setString(2, menuItem);
-                ps.executeUpdate();
-                
-                PreparedStatement ps3 = con.prepareStatement("insert into updated_menu(menu_item, portions_added, updated_by, action_done, date_updated) values  (?,?,?,?,?)");
-                ps3.setString(1, menuItem);
-                ps3.setInt(2, 0);
-                ps3.setString(3, HoUName);  
-                ps3.setString(4, "Cleared");  
-                ps3.setDate(5, dateUpdated);  
-                int rs3 = ps3.executeUpdate();
-                
-                JOptionPane.showMessageDialog(this, "The available portions of " + menuItem + " updated successfully!");
+                if(confirmUpdate == JOptionPane.YES_OPTION){
+                    PreparedStatement ps = con.prepareStatement("update menu SET portions_available=? where menu_item=?");
+                    ps.setInt(1, 0);
+                    ps.setString(2, menuItem);
+                    ps.executeUpdate();
+
+                    PreparedStatement ps3 = con.prepareStatement("insert into updated_menu(menu_item, portions_added, updated_by, action_done, date_updated) values  (?,?,?,?,?)");
+                    ps3.setString(1, menuItem);
+                    ps3.setInt(2, 0);
+                    ps3.setString(3, HoUName);  
+                    ps3.setString(4, "Cleared");  
+                    ps3.setDate(5, dateUpdated);  
+                    int rs3 = ps3.executeUpdate();
+
+                    JOptionPane.showMessageDialog(this, "The available portions of " + menuItem + " updated successfully!");
+                }
+                refreshTable();
+            } catch(Exception e){
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Error! Unable to update available portions. Please try again!");
             }
-            refreshTable();
-        } catch(Exception e){
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Error! Unable to update available portions. Please try again!");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1052,303 +1086,372 @@ public class headOfUnitHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        jTextArea1.setText(null);
-        int check=0;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-            System.out.println("connected");
-                
-            String report = jComboBox1.getSelectedItem().toString();
-            String timeline = jComboBox2.getSelectedItem().toString(); 
-            Date startDate = new Date(jDateChooser1.getDate().getTime());                
-            LocalDate begin = startDate.toLocalDate();
-                
-            if (timeline.equalsIgnoreCase("daily")) {
-                if (report.equalsIgnoreCase("Orders")) {
-                    jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
-                    jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select * from orders where order_date=?");
-                    ps.setDate(1, startDate);        
-                    ResultSet rs = ps.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
-                        jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
-                        check = 1;
-                    }
-                    if (check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
-                    }                        
-                } else if (report.equalsIgnoreCase("Sales")) {
-                    jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
-                    jTextArea1.append("-----------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date=?");
-                    ps.setDate(1, startDate);     
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date=?");
-                    ps2.setDate(1, startDate);     
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("      " + rs.getInt(1) + "            |     " + rs.getInt(2) + "      |     " + rs.getDate(3) + "\n");
-                        check = 1;
-                    }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
-                    }                    
-                } else if (report.equalsIgnoreCase("Servings")) {
-                    jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
-                    jTextArea1.append("-------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date=? group by menu_item;");
-                    ps.setDate(1, startDate);     
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date=?");
-                    ps2.setDate(1, startDate);     
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        String item = rs.getString(1);
-                        if (item.length() < 25){
-                            item = String.format("%-" + 25 + "s", item);
+        if (HoUName == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Head of Unit logged in. Please login and try again!", "WARNING!", 2);
+        } else { 
+            jTextArea1.setText(null);
+            int check=0;
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver"); //Connecting and Inserting into db
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+                System.out.println("connected");
+
+                String report = jComboBox1.getSelectedItem().toString();
+                String timeline = jComboBox2.getSelectedItem().toString(); 
+                Date startDate = new Date(jDateChooser1.getDate().getTime());                
+                LocalDate begin = startDate.toLocalDate();
+
+                if (timeline.equalsIgnoreCase("daily")) {
+                    if (report.equalsIgnoreCase("Orders")) {
+                        jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
+                        jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select * from orders where order_date=?");
+                        ps.setDate(1, startDate);        
+                        ResultSet rs = ps.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
+                            jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
+                            check = 1;
                         }
-                        jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
-                        check = 1;
-                    }
-                    
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
-                    }
-                }
-            } else if (timeline.equalsIgnoreCase("weekly")) {
-                LocalDate end = begin.plusDays(7);
-                Date endDate = Date.valueOf(end);
-                if (report.equalsIgnoreCase("Orders")) {
-                    jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
-                    jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select * from orders where order_date between ? and ?");
-                    ps.setDate(1, startDate); 
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
-                        jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
-                        check = 1;
-                    }
-                    if (check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
-                    }   
-                } else if (report.equalsIgnoreCase("Sales")) {
-                    jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
-                    jTextArea1.append("-----------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date between ? and ?");
-                    ps.setDate(1, startDate); 
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date between ? and ?");
-                    ps2.setDate(1, startDate); 
-                    ps2.setDate(2, endDate); 
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("      " + rs.getInt(1) + "            |     " + rs.getInt(2) + "      |     " + rs.getDate(3) + "\n");
-                        check = 1;
-                    }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
-                    }
-                } else if (report.equalsIgnoreCase("Servings")) {
-                    jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
-                    jTextArea1.append("-------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date between ? and ? group by menu_item;");
-                    ps.setDate(1, startDate);     
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date between ? and ?");
-                    ps2.setDate(1, startDate);     
-                    ps2.setDate(2, endDate); 
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        String item = rs.getString(1);
-                        if (item.length() < 25){
-                            item = String.format("%-" + 25 + "s", item);
+                        if (check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
+                        }                        
+                    } else if (report.equalsIgnoreCase("Sales")) {
+                        jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
+                        jTextArea1.append("-----------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date=?");
+                        ps.setDate(1, startDate);     
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date=?");
+                        ps2.setDate(1, startDate);     
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("      " + rs.getInt(1) + "            |     " + rs.getInt(2) + "      |     " + rs.getDate(3) + "\n");
+                            check = 1;
                         }
-                        jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
-                        check = 1;
-                    }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
-                    }
-                }
-            } else if (timeline.equalsIgnoreCase("monthly")) {
-                LocalDate end = begin.plusDays(30);
-                Date endDate = Date.valueOf(end);
-                if (report.equalsIgnoreCase("Orders")) {
-                    jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
-                    jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select * from orders where order_date between ? and ?");
-                    ps.setDate(1, startDate); 
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
-                        jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
-                        check = 1;
-                    }
-                    if (check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
-                    }   
-                } else if (report.equalsIgnoreCase("Sales")) {
-                    jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
-                    jTextArea1.append("-----------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date between ? and ?");
-                    ps.setDate(1, startDate); 
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date between ? and ?");
-                    ps2.setDate(1, startDate); 
-                    ps2.setDate(2, endDate); 
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("      " + rs.getInt(1) + "            |     " + rs.getInt(2) + "      |     " + rs.getDate(3) + "\n");
-                        check = 1;
-                    }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
-                    }
-                } else if (report.equalsIgnoreCase("Servings")) {
-                    jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
-                    jTextArea1.append("-------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date between ? and ? group by menu_item;");
-                    ps.setDate(1, startDate);     
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date between ? and ?");
-                    ps2.setDate(1, startDate);     
-                    ps2.setDate(2, endDate); 
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        String item = rs.getString(1);
-                        if (item.length() < 25){
-                            item = String.format("%-" + 25 + "s", item);
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
                         }
-                        jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
-                        check = 1;
-                    }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
-                    }
-                }
-            } else if (timeline.equalsIgnoreCase("yearly")) {
-                LocalDate end = begin.plusDays(365);
-                Date endDate = Date.valueOf(end);
-                if (report.equalsIgnoreCase("Orders")) {
-                    jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
-                    jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select * from orders where order_date between ? and ?");
-                    ps.setDate(1, startDate); 
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
-                        jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
-                        check = 1;
-                    }
-                    if (check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
-                    }   
-                } else if (report.equalsIgnoreCase("Sales")) {
-                    jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
-                    jTextArea1.append("-----------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date between ? and ?");
-                    ps.setDate(1, startDate); 
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date between ? and ?");
-                    ps2.setDate(1, startDate); 
-                    ps2.setDate(2, endDate); 
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        String item = rs.getString(1);
-                        if (item.length() < 25){
-                            item = String.format("%-" + 25 + "s", item);
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
+                        }                    
+                    } else if (report.equalsIgnoreCase("Servings")) {
+                        jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
+                        jTextArea1.append("-------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date=? group by menu_item;");
+                        ps.setDate(1, startDate);     
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date=?");
+                        ps2.setDate(1, startDate);     
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            String item = rs.getString(1);
+                            if (item.length() < 25){
+                                item = String.format("%-" + 25 + "s", item);
+                            }
+                            jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
+                            check = 1;
                         }
-                        jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
-                        check = 1;
+
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
+                        }
                     }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
+                } else if (timeline.equalsIgnoreCase("weekly")) {
+                    LocalDate end = begin.plusDays(7);
+                    Date endDate = Date.valueOf(end);
+                    if (report.equalsIgnoreCase("Orders")) {
+                        jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
+                        jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select * from orders where order_date between ? and ?");
+                        ps.setDate(1, startDate); 
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
+                            jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
+                            check = 1;
+                        }
+                        if (check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
+                        }   
+                    } else if (report.equalsIgnoreCase("Sales")) {
+                        jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
+                        jTextArea1.append("-----------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date between ? and ?");
+                        ps.setDate(1, startDate); 
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date between ? and ?");
+                        ps2.setDate(1, startDate); 
+                        ps2.setDate(2, endDate); 
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("      " + rs.getInt(1) + "            |     " + rs.getInt(2) + "      |     " + rs.getDate(3) + "\n");
+                            check = 1;
+                        }
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
+                        }
+                    } else if (report.equalsIgnoreCase("Servings")) {
+                        jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
+                        jTextArea1.append("-------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date between ? and ? group by menu_item;");
+                        ps.setDate(1, startDate);     
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date between ? and ?");
+                        ps2.setDate(1, startDate);     
+                        ps2.setDate(2, endDate); 
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            String item = rs.getString(1);
+                            if (item.length() < 25){
+                                item = String.format("%-" + 25 + "s", item);
+                            }
+                            jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
+                            check = 1;
+                        }
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
+                        }
                     }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
+                } else if (timeline.equalsIgnoreCase("monthly")) {
+                    LocalDate end = begin.plusDays(30);
+                    Date endDate = Date.valueOf(end);
+                    if (report.equalsIgnoreCase("Orders")) {
+                        jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
+                        jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select * from orders where order_date between ? and ?");
+                        ps.setDate(1, startDate); 
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
+                            jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
+                            check = 1;
+                        }
+                        if (check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
+                        }   
+                    } else if (report.equalsIgnoreCase("Sales")) {
+                        jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
+                        jTextArea1.append("-----------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date between ? and ?");
+                        ps.setDate(1, startDate); 
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date between ? and ?");
+                        ps2.setDate(1, startDate); 
+                        ps2.setDate(2, endDate); 
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("      " + rs.getInt(1) + "            |     " + rs.getInt(2) + "      |     " + rs.getDate(3) + "\n");
+                            check = 1;
+                        }
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
+                        }
+                    } else if (report.equalsIgnoreCase("Servings")) {
+                        jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
+                        jTextArea1.append("-------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date between ? and ? group by menu_item;");
+                        ps.setDate(1, startDate);     
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date between ? and ?");
+                        ps2.setDate(1, startDate);     
+                        ps2.setDate(2, endDate); 
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            String item = rs.getString(1);
+                            if (item.length() < 25){
+                                item = String.format("%-" + 25 + "s", item);
+                            }
+                            jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
+                            check = 1;
+                        }
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
+                        }
                     }
-                } else if (report.equalsIgnoreCase("Servings")) {
-                    jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
-                    jTextArea1.append("-------------------------------------------------------------------\n");
-                    PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date between ? and ? group by menu_item;");
-                    ps.setDate(1, startDate);     
-                    ps.setDate(2, endDate); 
-                    ResultSet rs = ps.executeQuery();
-                    PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date between ? and ?");
-                    ps2.setDate(1, startDate);     
-                    ps2.setDate(2, endDate); 
-                    ResultSet rs2 = ps2.executeQuery();
-                    while(rs.next()){
-                        jTextArea1.append("      " + rs.getString(1) + "        |             " + rs.getInt(2) + "\n");
-                        check = 1;
+                } else if (timeline.equalsIgnoreCase("yearly")) {
+                    LocalDate end = begin.plusDays(365);
+                    Date endDate = Date.valueOf(end);
+                    if (report.equalsIgnoreCase("Orders")) {
+                        jTextArea1.setText("ORDER ID | TOTAL PRICE | PAYMENT METHOD |  STATUS  | DATE ORDERED |          TICKET BY         |          SERVED BY       \n");
+                        jTextArea1.append("---------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select * from orders where order_date between ? and ?");
+                        ps.setDate(1, startDate); 
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("         " + rs.getInt(1) + "       |          " + rs.getInt(2) + "                |            " + rs.getString(3) + "                |     ");
+                            jTextArea1.append(rs.getString(4) + "   |         " + rs.getDate(5) + "     |          " + rs.getString(6) + "          |             " + rs.getString(7) + "\n");
+                            check = 1;
+                        }
+                        if (check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of orders taken within the selected timeline.");
+                        }   
+                    } else if (report.equalsIgnoreCase("Sales")) {
+                        jTextArea1.setText("ORDER ID |  PRICE   |  DATE   \n");
+                        jTextArea1.append("-----------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select order_id, total_price, order_date from orders where order_date between ? and ?");
+                        ps.setDate(1, startDate); 
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(total_price) from orders where order_date between ? and ?");
+                        ps2.setDate(1, startDate); 
+                        ps2.setDate(2, endDate); 
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            String item = rs.getString(1);
+                            if (item.length() < 25){
+                                item = String.format("%-" + 25 + "s", item);
+                            }
+                            jTextArea1.append("  " + item + "  |             " + rs.getInt(2) + "\n");
+                            check = 1;
+                        }
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL PRICE: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of sales made within the selected timeline.");
+                        }
+                    } else if (report.equalsIgnoreCase("Servings")) {
+                        jTextArea1.setText("      ITEM                      |  QTY ORDERED        \n");
+                        jTextArea1.append("-------------------------------------------------------------------\n");
+                        PreparedStatement ps = con.prepareStatement("select menu_item, sum(portions_ordered) from items where order_date between ? and ? group by menu_item;");
+                        ps.setDate(1, startDate);     
+                        ps.setDate(2, endDate); 
+                        ResultSet rs = ps.executeQuery();
+                        PreparedStatement ps2 = con.prepareStatement("select sum(portions_ordered) from items where order_date between ? and ?");
+                        ps2.setDate(1, startDate);     
+                        ps2.setDate(2, endDate); 
+                        ResultSet rs2 = ps2.executeQuery();
+                        while(rs.next()){
+                            jTextArea1.append("      " + rs.getString(1) + "        |             " + rs.getInt(2) + "\n");
+                            check = 1;
+                        }
+                        while(rs2.next()){
+                            jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
+                        }
+                        if(check == 0) {
+                            JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
+                        }
                     }
-                    while(rs2.next()){
-                        jTextArea1.append("\n\nTOTAL NO OF ITEMS: " + rs2.getInt(1));
-                    }
-                    if(check == 0) {
-                        JOptionPane.showMessageDialog(rootPane, "No record of items made within the selected timeline.");
-                    }
-                }
-            } 
-        } catch (Exception e) {
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Unable to read from DB.");
+                } 
+            } catch (Exception e) {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Unable to read from DB.");
+            }
         }
-       
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        try {
-            jTextArea1.print();
-            jTextArea1.setText(null);
-        } catch (PrinterException e) {
-            System.out.println(e);
-            JOptionPane.showMessageDialog(rootPane, "Unable to print this report.");
-        }        
+        if (HoUName == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Head of Unit logged in. Please login and try again!", "WARNING!", 2);
+        } else { 
+            try {
+                jTextArea1.print();
+                jTextArea1.setText(null);
+            } catch (PrinterException e) {
+                System.out.println(e);
+                JOptionPane.showMessageDialog(rootPane, "Unable to print this report.");
+            }
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        /*if (HoUName == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Head of Unit logged in. Please login and try again!", "WARNING!", 2);
+        } else { 
+        
+        }*/
         String tableShowing = jComboBox3.getSelectedItem().toString();
         if (tableShowing.equalsIgnoreCase("Orders")){
-        
-        } else if (tableShowing.equalsIgnoreCase("Orders")){
-        
-        } else if (tableShowing.equalsIgnoreCase("Orders")){
-        
-        } else if (tableShowing.equalsIgnoreCase("Orders")){
-        
-        }
+            orderDashboardRT odrt = new orderDashboardRT();
+            Thread t = new Thread(odrt);
+            t.start();
+            jScrollPane4.setVisible(false);
+            jTable3.setVisible(false);
+            jScrollPane3.setBounds(100, 150, 400, 400);
+            jScrollPane3.setVisible(true);
+            jTable2.setVisible(true);
+            jComboBox4.setVisible(true);             
+        } else if (tableShowing.equalsIgnoreCase("Staff Activities")){
+            staffActivitiesDashboardRT sadrt = new staffActivitiesDashboardRT();
+            Thread t = new Thread(sadrt);
+            t.start();
+            jScrollPane3.setVisible(false);
+            jTable2.setVisible(false);
+            jComboBox4.setVisible(false);
+            jScrollPane4.setBounds(100, 150, 400, 400);
+            jScrollPane4.setVisible(true);
+            jTable3.setVisible(true);
+        } 
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+        orderDashboardRT odrt = new orderDashboardRT();
+        Thread t = new Thread(odrt);
+        t.start();
+    }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        /*if (HoUName == null) {
+            JOptionPane.showMessageDialog(rootPane, "No Head of Unit logged in. Please login and try again!", "WARNING!", 2);
+        } else { 
         
+        }*/
+        try {
+            DefaultTableModel tm = (DefaultTableModel) jTable2.getModel();
+            DefaultTableModel tm2 = (DefaultTableModel) jTable5.getModel();
+            int row = jTable2.getSelectedRow();
+            int orderID = Integer.valueOf(tm.getValueAt(row, 0).toString());            
+            tm2.setRowCount(0);
+            
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            
+            PreparedStatement ps = con.prepareStatement("select * from items where order_id=?");            
+            ps.setInt(1, orderID);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String portion = String.valueOf(rs.getInt(2));
+                String price = String.valueOf(rs.getInt(3));
+                String menu_item = rs.getString(1);
+
+                String[] row2 = {menu_item, portion, price};
+                tm2.addRow(row2);
+            }
+            jTable5.setModel(tm2);
+            jTable5.setVisible(true);
+            jScrollPane6.setBounds(100, 400, 400, 400);            
+            jScrollPane6.setVisible(true);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jTable2MouseClicked
+       
+    
     private void refreshTable() {
         try{
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
@@ -1492,8 +1595,7 @@ public class headOfUnitHome extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
+    public static javax.swing.JComboBox<String> jComboBox4;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1533,9 +1635,9 @@ public class headOfUnitHome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     public static javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
+    public static javax.swing.JScrollPane jScrollPane3;
+    public static javax.swing.JScrollPane jScrollPane4;
+    public static javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JTable jTable1;
     public static javax.swing.JTable jTable2;

@@ -93,7 +93,9 @@ public class HoUandKitchenRTNotification implements Runnable {
                    
                 //System.out.println("Email & PopUp Notification");
                 
-                Thread.sleep(120000);
+                Thread.sleep(60000);
+                Thread.sleep(60000);
+                Thread.sleep(60000);
            }
         } catch (Exception e) {
             System.out.println("error");
