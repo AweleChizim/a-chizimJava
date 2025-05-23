@@ -19,11 +19,11 @@ public class serverAlertRealTime implements Runnable {
     public void run() {
         env env = new env();
         try {
-           for(int i=1; i<2; i--) {              
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-                System.out.println("connected");
-                PreparedStatement ps = con.prepareStatement("select * from menu");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            for(int i=1; i<2; i--) {              
+            PreparedStatement ps = con.prepareStatement("select * from menu");
                 ResultSet rs = ps.executeQuery();
                 int count = 0;
                 

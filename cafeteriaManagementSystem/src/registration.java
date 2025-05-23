@@ -446,7 +446,7 @@ public class registration extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Staff Account created successfully! Please hold on; we are sending you an email.");
                 String receiver = jTextField11.getText();
                 String subject = "Registration Successful";
-                String body = "Good Day, "+ name + ". You have successfully created registered your Staff Account in the Cafeteria Management System\n\nYour login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nPlease verify your account by logging in.\nThank you for registering.\n\nAGC";
+                String body = "Good Day, "+ name + ". You have successfully created your Staff Account in the Cafeteria Management System\n\nYour login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nPlease verify your account by logging in.\nThank you for registering.\n\nAGC";
                 String senderEmail = "chizimawele@gmail.com";
                 String senderPassword = "craqfussrsiirinn";
 

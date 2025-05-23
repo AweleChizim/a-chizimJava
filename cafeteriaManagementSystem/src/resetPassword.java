@@ -39,7 +39,8 @@ public class resetPassword extends javax.swing.JFrame {
         jButton4.setVisible(false);
         jButton5.setVisible(false);
         jLabel17.setVisible(false);
-        jTextField13.setVisible(false);        
+        jTextField13.setVisible(false);
+        jCheckBox1.setVisible(false);
     }
     env envPass = new env();
     Random random = new Random();
@@ -66,6 +67,7 @@ public class resetPassword extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton5 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -130,6 +132,15 @@ public class resetPassword extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setFont(new java.awt.Font("Georgia", 0, 13)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(226, 209, 194));
+        jCheckBox1.setText("Show Password");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -159,7 +170,9 @@ public class resetPassword extends javax.swing.JFrame {
                             .addGap(45, 45, 45)
                             .addComponent(jLabel18)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel14)
@@ -192,7 +205,9 @@ public class resetPassword extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(4, 4, 4)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
         );
@@ -342,6 +357,7 @@ public class resetPassword extends javax.swing.JFrame {
         if (codeEntered == code){
             jLabel18.setVisible(true);
             jPasswordField1.setVisible(true);
+            jCheckBox1.setVisible(true);
             jButton4.setVisible(true);
         } else{
             JOptionPane.showMessageDialog(rootPane, "Invalid Code");
@@ -354,6 +370,14 @@ public class resetPassword extends javax.swing.JFrame {
         ITHomePage.show();
         dispose();
     }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            jPasswordField1.setEchoChar((char)0);
+        } else {
+            jPasswordField1.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,6 +418,7 @@ public class resetPassword extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;

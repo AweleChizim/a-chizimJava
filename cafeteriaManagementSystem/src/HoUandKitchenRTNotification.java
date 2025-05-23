@@ -30,12 +30,12 @@ public class HoUandKitchenRTNotification implements Runnable {
     public void run() {
         env env = new env();
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
             for(int i=1; i<2; i--) {    
                 List<String> menuItems = new ArrayList<>();
                 List<String> emails = new ArrayList<>();
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-                System.out.println("connected");
                 PreparedStatement ps = con.prepareStatement("select * from menu");
                 PreparedStatement ps2 = con.prepareStatement("select * from staff");
                 ResultSet rs2 = ps2.executeQuery();

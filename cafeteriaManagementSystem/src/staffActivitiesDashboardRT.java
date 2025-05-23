@@ -19,12 +19,13 @@ public class staffActivitiesDashboardRT implements Runnable {
     public void run() {
         env env = new env();
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected sadrt");
+                
            for(int i=1; i<2; i--) {              
                 DefaultTableModel tm = (DefaultTableModel) headOfUnitHome.jTable3.getModel();
                 tm.setRowCount(0);
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-                System.out.println("connected sadrt");
                 
                 PreparedStatement ps = con.prepareStatement("select * from updated_menu");
                 ResultSet rs = ps.executeQuery();                    
@@ -45,21 +46,22 @@ public class staffActivitiesDashboardRT implements Runnable {
                     tm.addRow(row);
                 }
 
-                PreparedStatement ps2 = con.prepareStatement("select * from orders where served_by is not null");
+                PreparedStatement ps2 = con.prepareStatement("select * from orders");
                 ResultSet rs2 = ps2.executeQuery();                    
                 while (rs2.next()) {
                     String name1 = rs2.getString(6);
                     String name2 = rs2.getString(7);
                     String action1 = "Logged Order No " + String.valueOf(rs2.getInt(1));
-                    String action2 = "Served Order No " + String.valueOf(rs2.getInt(1));
                     String role1 = "Ticketing";
                     String role2 = "Server";
                     String date = String.valueOf(rs2.getDate(5));
-
                     String[] row1 = {name1, role1, action1, date};
-                    String[] row2 = {name2, role2, action2, date};
                     tm.addRow(row1);
-                    tm.addRow(row2);
+                    if (name2 != null) {
+                        String action2 = "Served Order No " + String.valueOf(rs2.getInt(1));
+                        String[] row2 = {name2, role2, action2, date};                        
+                        tm.addRow(row2);
+                    }                    
                 }
 
                 headOfUnitHome.jTable5.setVisible(false);

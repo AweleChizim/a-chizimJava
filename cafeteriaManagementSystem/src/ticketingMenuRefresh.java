@@ -19,12 +19,12 @@ public class ticketingMenuRefresh implements Runnable {
     public void run() {
         env env = new env();
         try {
-           for(int i=1; i<2; i--) {              
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
+            System.out.println("connected");
+            for(int i=1; i<2; i--) {              
                 DefaultTableModel tm = (DefaultTableModel) ticketingHome.jTable1.getModel();
                 tm.setRowCount(0);
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cafeteriamanagement", "root", env.Password);
-                System.out.println("connected");
                 PreparedStatement ps = con.prepareStatement("select * from menu");
                 ResultSet rs = ps.executeQuery();
                 int count = 0;
