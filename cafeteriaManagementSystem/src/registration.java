@@ -33,7 +33,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author chizi
  */
 public class registration extends javax.swing.JFrame {
-
     /**
      * Creates new form registration
      */
@@ -41,7 +40,7 @@ public class registration extends javax.swing.JFrame {
         initComponents();
         setIconImage();
         buttonGroup2.add(jRadioButton1);
-        buttonGroup2.add(jRadioButton2);
+        buttonGroup2.add(jRadioButton2);       
     }
     env env = new env();
     public String filename = null;
@@ -540,7 +539,8 @@ public class registration extends javax.swing.JFrame {
             jPasswordField1.setEchoChar('*');
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
+   
+    
     /**
      * @param args the command line arguments
      */

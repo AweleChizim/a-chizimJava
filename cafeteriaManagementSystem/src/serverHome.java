@@ -36,8 +36,7 @@ public class serverHome extends javax.swing.JFrame {
         jScrollPane2.setVisible(false);
         jTable1.setVisible(false);
         server = name;
-        jLabel3.setText("Serving by: " + name);
-        
+        jLabel3.setText("Serving by: " + name);        
         serverAlertRealTime sart = new serverAlertRealTime();
         Thread t = new Thread(sart);
         t.start();

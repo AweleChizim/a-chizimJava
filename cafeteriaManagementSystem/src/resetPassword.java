@@ -346,6 +346,7 @@ public class resetPassword extends javax.swing.JFrame {
                 jButton5.setVisible(false);
                 jLabel17.setVisible(false);
                 jTextField13.setVisible(false);    
+                jCheckBox1.setVisible(false);
             } catch(Exception e){
                 System.out.println(e);
                 JOptionPane.showMessageDialog(rootPane, "Error");
