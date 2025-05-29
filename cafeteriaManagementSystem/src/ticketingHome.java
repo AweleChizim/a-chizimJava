@@ -622,7 +622,6 @@ public class ticketingHome extends javax.swing.JFrame {
                         ps2.executeUpdate();
                     }
 
-                    //Issue occurs when updating the portions of food left after order
                     PreparedStatement ps3 = con.prepareStatement("select * from menu where menu_item = ?");
                     for (int index=0; index<menuItems.length; index++){
                         ps3.setString(1, menuItems[index]);
