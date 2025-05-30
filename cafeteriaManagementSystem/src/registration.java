@@ -9,16 +9,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Date;
-import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -446,33 +438,7 @@ public class registration extends javax.swing.JFrame {
                 String receiver = jTextField11.getText();
                 String subject = "Registration Successful";
                 String body = "Good Day, "+ name + ". You have successfully created your Staff Account in the Cafeteria Management System\n\nYour login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nPlease verify your account by logging in.\nThank you for registering.\n\nAGC";
-                String senderEmail = "chizimawele@gmail.com";
-                String senderPassword = "craqfussrsiirinn";
-
-                Properties props = new Properties();
-                props.put("mail.smtp.auth", "true");
-                props.put("mail.smtp.starttls.enable", "true");
-                props.put("mail.smtp.host", "smtp.gmail.com");
-                props.put("mail.smtp.port", "587");
-
-                Session session = Session.getInstance(props,
-                    new javax.mail.Authenticator() {
-                        protected PasswordAuthentication getPasswordAuthentication() {
-                            return new PasswordAuthentication(senderEmail, senderPassword);
-                        }
-                    });
-
-                try {
-                    Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(senderEmail));
-                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
-                    message.setSubject(subject);
-                    message.setText(body);
-                    Transport.send(message);
-                    JOptionPane.showMessageDialog(rootPane, "Email Sent");
-                } catch (MessagingException e) {
-                    JOptionPane.showMessageDialog(rootPane, e);
-                }
+                emailSender.send(receiver, subject, body);
                 jTextField10.setText(null); 
                 jTextField11.setText(null);
                 jTextField13.setText(null);

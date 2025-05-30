@@ -5,15 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Properties;
 import java.util.Random;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 
@@ -244,36 +236,7 @@ public class resetPassword extends javax.swing.JFrame {
                     String receiver = email;
                     String subject = "OTP Code";
                     String body = "Email OTP Verification. Your one time passcode to complete your password reset is " + code + "\n\nPlease do not share this code with anyone else.\nThank you!\n\nAGC";
-                    String senderEmail = "chizimawele@gmail.com";
-                    String senderPassword = "craqfussrsiirinn";
-
-                    Properties props = new Properties();
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.port", "587");
-
-                    Session session = Session.getInstance(props,
-                        new javax.mail.Authenticator() {
-                            protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication(senderEmail, senderPassword);
-                            }
-                        });
-
-                        try {
-                            Message message = new MimeMessage(session);
-                            message.setFrom(new InternetAddress(senderEmail));
-                            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
-                            message.setSubject(subject);
-                            message.setText(body);
-                            Transport.send(message);
-                            JOptionPane.showMessageDialog(rootPane, "Email Sent");
-                            jButton5.setVisible(true);
-                            jLabel17.setVisible(true);
-                            jTextField13.setVisible(true);        
-                        } catch (MessagingException e) {
-                            JOptionPane.showMessageDialog(rootPane, e);
-                        }
+                    emailSender.send(receiver, subject, body);
                 }else{
                     JOptionPane.showMessageDialog(rootPane, "No record found for staff email: " + email);
                 }
@@ -310,43 +273,17 @@ public class resetPassword extends javax.swing.JFrame {
             String receiver = jTextField11.getText();
             String subject = "Password Reset Successful";
             String body = "Good Day. You have successfully reset the password for your Staff Account in the Cafeteria Management System.\n\nYour new login details are:\nUsername: "+ email + "\nPassword: " + pass + "\n\nIf this was not you, kindly contact the IT Department immediately.\nThank you!\n\nAGC";
-            String senderEmail = "chizimawele@gmail.com";
-            String senderPassword = "craqfussrsiirinn";
-
-            Properties props = new Properties();
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.enable", "true");
-            props.put("mail.smtp.host", "smtp.gmail.com");
-            props.put("mail.smtp.port", "587");
-
-            Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(senderEmail, senderPassword);
-                    }
-                });
-
-                try {
-                    Message message = new MimeMessage(session);
-                    message.setFrom(new InternetAddress(senderEmail));
-                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
-                    message.setSubject(subject);
-                    message.setText(body);
-                    Transport.send(message);
-                    JOptionPane.showMessageDialog(rootPane, "Email Sent");
-                } catch (MessagingException e) {
-                    JOptionPane.showMessageDialog(rootPane, e);
-                }
-                jTextField11.setText(null);
-                jTextField13.setText(null);
-                jPasswordField1.setText(null);
-                jLabel18.setVisible(false);
-                jPasswordField1.setVisible(false);
-                jButton4.setVisible(false);
-                jButton5.setVisible(false);
-                jLabel17.setVisible(false);
-                jTextField13.setVisible(false);    
-                jCheckBox1.setVisible(false);
+            emailSender.send(receiver, subject, body);
+            jTextField11.setText(null);
+            jTextField13.setText(null);
+            jPasswordField1.setText(null);
+            jLabel18.setVisible(false);
+            jPasswordField1.setVisible(false);
+            jButton4.setVisible(false);
+            jButton5.setVisible(false);
+            jLabel17.setVisible(false);
+            jTextField13.setVisible(false);    
+            jCheckBox1.setVisible(false);
             } catch(Exception e){
                 System.out.println(e);
                 JOptionPane.showMessageDialog(rootPane, "Error");

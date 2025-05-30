@@ -6,14 +6,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 /*
@@ -61,34 +53,8 @@ public class HoUandKitchenRTNotification implements Runnable {
                     String subject = "ALERT! Menu Item Portions Running Low!";
                     String text = "The following menu items are running low:\n[menuItems_here]\n\nPlease restock immediately!\n\n\nAGC";
                     String body = text.replace("[menuItems_here]", items.toUpperCase());
-                    String senderEmail = "chizimawele@gmail.com";
-                    String senderPassword = "craqfussrsiirinn";
-
-                    Properties props = new Properties();
-                    props.put("mail.smtp.auth", "true");
-                    props.put("mail.smtp.starttls.enable", "true");
-                    props.put("mail.smtp.host", "smtp.gmail.com");
-                    props.put("mail.smtp.port", "587");
-
-                    Session session = Session.getInstance(props,
-                        new javax.mail.Authenticator() {
-                            protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication(senderEmail, senderPassword);
-                            }
-                        });
-
-                    try {
-                        Message message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress(senderEmail));
-                        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(receiver));
-                        message.setSubject(subject);
-                        message.setText(body);
-                        Transport.send(message);
-                        System.out.println("Email Sent");
-                        JOptionPane.showMessageDialog(null, "Running Low!!! " + popup, "ALERT", 1);
-                    } catch (MessagingException e) {
-                        System.out.println(e);
-                    }
+                    emailSender.send(receiver, subject, body);
+                    JOptionPane.showMessageDialog(null, "Running Low!!! " + popup, "ALERT", 1);
                 }
                    
                 //System.out.println("Email & PopUp Notification");

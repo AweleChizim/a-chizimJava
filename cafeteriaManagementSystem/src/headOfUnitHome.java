@@ -52,11 +52,9 @@ public class headOfUnitHome extends javax.swing.JFrame {
         HoUMenuRefresh hmr = new HoUMenuRefresh();
         Thread tt = new Thread(hmr);
         tt.start();
-        /*
         HoUandKitchenRTNotification rtn = new HoUandKitchenRTNotification();
         Thread t3 = new Thread(rtn);
         t3.start();
-        */
     }    
 
     /**
