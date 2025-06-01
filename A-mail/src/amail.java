@@ -159,11 +159,12 @@ public class amail extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        env env = new env();
         String receiver = jTextField1.getText();
         String subject = jTextField3.getText();
         String body = jTextArea1.getText();
-        String senderEmail = "chizimawele@gmail.com";
-        String senderPassword = "craqfussrsiirinn";
+        String senderEmail = env.senderEmail;
+        String senderPassword = env.senderPassword;
         
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
