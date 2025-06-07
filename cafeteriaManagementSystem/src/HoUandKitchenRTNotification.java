@@ -45,16 +45,19 @@ public class HoUandKitchenRTNotification implements Runnable {
                         String menuItem = rs.getString(1);
                         menuItems.add(menuItem);
                     }
-                }  
-                String items = String.join("\n", menuItems);
-                String popup = (String.join(", ", menuItems)).toUpperCase();
-                while (it.hasNext()) {
-                    String receiver = it.next();
-                    String subject = "ALERT! Menu Item Portions Running Low!";
-                    String text = "The following menu items are running low:\n[menuItems_here]\n\nPlease restock immediately!\n\n\nAGC";
-                    String body = text.replace("[menuItems_here]", items.toUpperCase());
-                    emailSender.send(receiver, subject, body);
-                    JOptionPane.showMessageDialog(null, "Running Low!!! " + popup, "ALERT", 1);
+                } 
+                
+                if (!menuItems.isEmpty()) {
+                    String items = String.join("\n", menuItems);
+                    String popup = (String.join(", ", menuItems)).toUpperCase();
+                    while (it.hasNext()) {
+                        String receiver = it.next();
+                        String subject = "ALERT! Menu Item Portions Running Low!";
+                        String text = "The following menu items are running low:\n[menuItems_here]\n\nPlease restock immediately!\n\n\nAGC";
+                        String body = text.replace("[menuItems_here]", items.toUpperCase());
+                        emailSender.send(receiver, subject, body);
+                        JOptionPane.showMessageDialog(null, "Running Low!!! " + popup, "ALERT", 1);
+                    }
                 }
                    
                 //System.out.println("Email & PopUp Notification");
